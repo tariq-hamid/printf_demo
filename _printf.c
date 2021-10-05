@@ -9,26 +9,26 @@
  */
 int _printf(const char *format, ...)
 {
-    int count = 0;
-    va_list args;
-    void (*func)(va_list args, int *count);
+	int count = 0;
+	va_list args;
+	void (*func)(va_list args, int *count);
 
-    va_start(args, format);
-    if ( format == NULL || (*format == '%' && *(format + 1) == '\0') )
-        return (-1);
-    
-    while ( (*format) != '\0' )
+	va_start(args, format);
+	if (format == NULL || (*format == '%' && *(format + 1) == '\0'))
+		return (-1);
+
+	while ((*format) != '\0')
 	{
-		if ( ((*format) == '%') && (*(format + 1) != '\0') )
+		if (((*format) == '%') && (*(format + 1) != '\0'))
 		{
 			format++;
 			func = mapper(*format);
-			if ( func != NULL )
+			if (func != NULL)
 			{
 				func(args, &count);
 				format++;
 			}
-			else if ( *format == '%' )
+			else if (*format == '%')
 			{
 				_putchar(*format, &count);
 				format++;
@@ -40,17 +40,14 @@ int _printf(const char *format, ...)
 				format++;
 			}
 		}
-		else if ( *format != '%' )
+		else if (*format != '%')
 		{
-			_putchar( *format, &count );
+			_putchar(*format, &count);
 			format++;
-		}
-		else
-        {
+		} else
 			format++;
-        }
 	}
-
-    va_end(args);
+	va_end(args);
 	return (count);
+	}
 }
