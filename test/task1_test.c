@@ -12,5 +12,8 @@ int main(void)
     _printf("This is a string: %s", "a string :P\n");
     printf("This is a string: %s", "a string :P\n");
 
+    _printf("This is a percent sign: %%\n");
+    printf("This is a percent sign: %%\n");
+
     return (0);
 }
